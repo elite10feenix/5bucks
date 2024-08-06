@@ -1,0 +1,13 @@
+[build]
+  cmd = "go build -o main main.go"
+  bin = "./main"
+  include = ["*.go"]
+  exclude = ["assets/**", "frontend/**"]
+
+[log]
+  time = true
+  log_level = "info"
+
+[server]
+  # Optional: define port if needed
+  port = 8080
