@@ -15,8 +15,8 @@ module.exports = {
       colors: {
         'custom-green': '#A0FF42',
         'custom-green2': '#5AFF1A',
-        'custom-purple': '#21173C',
-        'custom-purple2': '#1B0535',
+        'custom-purple': '#1B0535',
+        'custom-purple2': '#21173C',
         'custom-pink': '#8B57F5',
         'register': '#4C0E95',
         'login': '#A0FF42',

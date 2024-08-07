@@ -99,6 +99,7 @@ const About = () => {
         <img src={app3dimage1} className="w-full h-auto"/>
         </div>
       </section>
+      
       <div className="w-full h-10 bg-custom-purple"></div>
     </main>
   );
