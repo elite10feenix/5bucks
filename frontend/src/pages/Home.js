@@ -1,11 +1,18 @@
 import React from 'react';
+import homeslider from '../assets/homeslider.png'; 
+import coinImage from '../assets/coin.png'; // Adjust the path as needed
 
 const Home = () => {
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-center">Hosme Page</h1>
-      <p className="text-center">Welcome to the Home Page!</p>
-    </div>
+    <main className="w-full">
+      <section className="relative flex flex-col md:flex-row mb-6">
+        <img src={homeslider} className="w-full h-auto" alt="Home Slider" />
+
+        <div className="absolute -bottom-10 right-10" >
+          <img src={coinImage} className="w-36 h-30" alt="Coin" />
+        </div>
+      </section>
+    </main>
   );
 };
 
