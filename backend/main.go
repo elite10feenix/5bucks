@@ -9,7 +9,7 @@ import (
 
 func main() {
 	// Load configuration
-	config.Load()
+	config.ConnectDatabase()
 
 	// Create a new Gin engine instance
 	r := gin.Default()

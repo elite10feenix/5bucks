@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png'; // Adjust the path if necessary
+import logo from '../assets/logo2.png'; // Adjust the path if necessary
 import facebookIcon from '../assets/footer/facebook.png'; // Adjust the path if necessary
 import instagramIcon from '../assets/footer/instagram.png'; // Adjust the path if necessary
 import tiktokIcon from '../assets/footer/tiktok.png'; // Adjust the path if necessary
@@ -66,37 +66,39 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Follow Us Section */}
-          <div className="flex items-center space-x-3 md:space-x-4 mb-4 md:mb-6">
-            <p className="text-custom-green2 font-bold text-xs md:text-sm">Follow Us</p>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <img src={facebookIcon} alt="Facebook" className="w-5 h-5 md:w-6 md:h-6" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <img src={instagramIcon} alt="Instagram" className="w-5 h-5 md:w-6 md:h-6" />
-            </a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
-              <img src={tiktokIcon} alt="TikTok" className="w-5 h-5 md:w-6 md:h-6" />
-            </a>
-          </div>
         </div>
 
         {/* Right Side */}
-        <div className="flex-1 p-4 md:p-6 flex flex-col items-center justify-center">
+        <div className="flex-1 p-4 md:p-6 flex flex-col items-center">
           {/* Pay With Text */}
-          <div className="mb-4 md:mb-6 text-center text-custom-green2 text-xs md:text-lg">
+          <div className="w-full flex flex-col items-center mb-4 md:mb-6 text-custom-green2 text-xs md:text-lg">
             <p className="font-bold">Pay with</p>
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-2 sm:gap-3 md:gap-4 mt-2">
+              {paymentIconsWithSrc.map((icon, index) => (
+                <a href={icon.url} key={index} className="flex justify-center">
+                  <img src={icon.src} alt={icon.name} className="h-6 md:h-8" />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Payment Images */}
-          <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-2 sm:gap-3 md:gap-4">
-            {paymentIconsWithSrc.map((icon, index) => (
-              <a href={icon.url} key={index} className="flex justify-center">
-                <img src={icon.src} alt={icon.name} className="h-6 md:h-8" />
+          {/* Follow Us Section */}
+          <div className="w-full flex justify-end">
+            <div className="flex items-center space-x-3 md:space-x-4 mb-4 md:mb-6">
+              <p className="text-custom-green2 font-bold text-xs md:text-sm">Follow Us</p>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <img src={facebookIcon} alt="Facebook" className="w-5 h-5 md:w-6 md:h-6" />
               </a>
-            ))}
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <img src={instagramIcon} alt="Instagram" className="w-5 h-5 md:w-6 md:h-6" />
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+                <img src={tiktokIcon} alt="TikTok" className="w-5 h-5 md:w-6 md:h-6" />
+              </a>
+            </div>
           </div>
         </div>
+
       </div>
 
       {/* Footer Bottom Text */}

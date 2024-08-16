@@ -18,6 +18,8 @@ module.exports = {
         'custom-purple': '#1B0535',
         'custom-purple2': '#21173C',
         'custom-pink': '#8B57F5',
+        'custom-pink2': '#B4A1F7',
+        'custom-gray': '#EAEAEA',
         'register': '#4C0E95',
         'login': '#A0FF42',
        
