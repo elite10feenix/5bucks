@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from '../assets/logo.png'; 
-import app3dimage2 from '../assets/app3dimage2.png'; 
+import app3dimage from '../assets/app3dimage.png'; 
 
 const Rules = () => {
   return (
     <main className="w-full bg-custom-purple">
        {/* Desktop/Mobile View */}
-      <div className="px-6 text-white pb-2">
+      <div className="px-10 text-white pb-2 pt-6">
         {/* Logo */}
         <img src={logo} className="max-w-full h-auto pb-10" />
 
@@ -14,12 +14,12 @@ const Rules = () => {
         <h1 className="text-3xl font-bold mb-6">Terms and Conditions</h1>
 
         {/* Criteria Text */}
-        <p className="text-xl font-bold mb-4 pb-2">
+        <p className="text-2xl font-bold mb-4 pb-2">
           Criteria the user must meet and rules for participation:
         </p>
 
         {/* List of Terms */}
-        <ul className="list-disc list-inside mb-6 space-y-2">
+        <ul className="list-disc list-inside mb-6 space-y-2 text-xl">
           <li>I confirm that I am over 18 years old.</li>
           <li>Since this platform aims to unite people from all over the world and give them knowledge about their power, the power of unity. And the true power of the price of coffee, this platform does not fall under the category of gambling or lottery. Therefore, the winner of this cash amount will be paid in several installments according to the rules, not entirely and at once.</li>
           <li>The winner must legally declare the money in their country and is obligated to pay personal taxes (in different percentages depending on the legislation of their country where the money will be deposited).</li>
@@ -33,7 +33,7 @@ const Rules = () => {
         </ul>
 
         {/* Additional Information */}
-        <p className="text-base mb-6">
+        <p className="text-base mb-6 text-xl">
           Create an account with your accurate personal information and a mandatory username that will not match with your first and last name.
           Enter/pay through a liquid bank account (an account to which your winnings will be paid if you are a winner); otherwise, if your account is not liquid, your winnings will be nullified.
           The user’s data must match the data of the bank account.
@@ -47,21 +47,23 @@ const Rules = () => {
       </div>
 
       {/* Mobile View */}
-      <section className="px-6 md:hidden flex">
-        {/* Text List */}
-        <div className="flex-1 flex flex-col justify-end">
-          <ul className="list-none text-white text-3xl mb-4">
-            <li className="mb-2">SKIP YOUR</li>
-            <li className="mb-2">COFFEE TODAY</li>
-            <li className="mb-2">AND BECOME</li>
-            <li className="mb-2 text-4xl">MILLIONAIRE</li>
-            <li className="mb-2">TOMORROW</li>
-          </ul>
+      <section className="md:hidden relative flex my-4 mx-4">
+        {/* Left Half */}
+        <div className="w-1/2 flex items-center justify-center">
+          <div className="text-white text-center">
+            <ul className="list-none text-2xl md:text-4xl">
+              <li className="mb-2">SKIP YOUR</li>
+              <li className="mb-2">COFFEE TODAY</li>
+              <li className="mb-2">AND BECOME</li>
+              <li className="mb-2 text-3xl md:text-5xl">MILLIONAIRE</li>
+              <li className="mb-2">TOMORROW</li>
+            </ul>
+          </div>
         </div>
-        
-        {/* Image */}
-        <div className="flex-1 flex justify-left">
-          <img src={app3dimage2} className="w-full h-auto"/>
+
+        {/* Right Half */}
+        <div className="w-1/2 flex items-center justify-end">
+          <img src={app3dimage} className="w-full h-auto object-cover" alt="3D App Image" />
         </div>
       </section>
 

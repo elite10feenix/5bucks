@@ -3,26 +3,26 @@ import logo from '../assets/logo.png';
 import kafeImage from '../assets/kafe.png'; // Adjust the path as needed
 import coinImage from '../assets/coin.png'; // Adjust the path as needed
 import backgroundImage from '../assets/pozadina2.png'; // Adjust the path as needed
-import app3dimage1 from '../assets/app3dimage1.png'; // Adjust the path as needed
+import app3dimage from '../assets/app3dimage.png'; // Adjust the path as needed
 
 const About = () => {
   return (
     <main className="w-full bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <section className="relative px-6 flex flex-col md:flex-row mb-6">
+      <section className="relative px-6 flex flex-col md:flex-row mb-6 pt-6">
         {/* Left Half */}
         <div className="flex-1 flex flex-col justify-between">
           {/* About Text and Logo */}
-          <div className="flex flex-col p-3"> {/* Added bottom margin to leave space for bottom coin */}
+          <div className="flex flex-col p-4"> {/* Added bottom margin to leave space for bottom coin */}
             <div className="flex items-center mb-4">
               <h1 className="text-3xl font-bold text-white">About Us</h1>
               <img src={logo} className="ml-4" />
             </div>
-            <p className="text-custom-purple mb-4 text-justify hidden md:block">
+            <p className="text-custom-purple text-2xl mb-4 text-justify hidden md:block">
               What is the power of 5 dollars? Have you ever wondered how people around the world most often spend their 5 dollars? Just ask yourself what percentage of people on this planet start their day with coffee? And constantly repeat the same thing several times a day, often without real need for it...
             </p>
 
-            <div className="bg-custom-purple p-3 text-white rounded-md md:hidden">
-              <p className="mb-3 text-justify">
+            <div className="bg-custom-purple p-4 text-white rounded-md md:hidden">
+              <p className="mb-3 text-justify text-2xl">
                 What is the power of 5 dollars? Have you ever wondered how people around the world most often spend their 5 dollars? Just ask yourself what percentage of people on this planet start their day with coffee? And constantly repeat the same thing several times a day, often without real need for it...
               </p>
             </div>
@@ -46,8 +46,8 @@ const About = () => {
       </section>
       
       {/* Content Section */}
-      <section className="px-6">
-        <div className="text-custom-purple p-3 hidden md:block">
+      <section className="px-6 text-2xl">
+        <div className="text-custom-purple p-4 hidden md:block">
           <p className="mb-2">Of course, coffee has its health benefits, but have you ever wondered what the power of the price a cup of coffee is ?</p>
           <p className="mb-2">In the Balkans, the average hourly wage is 5 dollars</p>
           <p className="mb-2">In India, one working day amounts to 5 dollars</p>
@@ -56,7 +56,7 @@ const About = () => {
           <p className="mb-2">spent in a coffee shop can be an investment but also wasted time. </p>
         </div>
 
-        <div className="bg-custom-purple opacity-50 text-white mb-3 p-3 rounded-md md:hidden">
+        <div className="bg-custom-purple opacity-50 text-white mb-3 p-4 rounded-md md:hidden">
           <p className="mb-2">Of course, coffee has its health benefits, but have you ever wondered what the power of the price a cup of coffee is ?</p>
           <p className="mb-2">In the Balkans, the average hourly wage is 5 dollars</p>
           <p className="mb-2">In India, one working day amounts to 5 dollars</p>
@@ -65,7 +65,7 @@ const About = () => {
           <p className="mb-2">spent in a coffee shop can be an investment but also wasted time. </p>
         </div>
 
-        <div className="bg-custom-purple p-3 text-white rounded-md">
+        <div className="bg-custom-purple p-4 text-white rounded-md">
           <p className="mb-3 text-justify">
             Our goal and idea are to create a platform  that will bring together millions of people from around the world, so that instead of starting their day with coffee, 
             their 5 dollars will be invested in our social platform, with which their 5 dollars
@@ -81,22 +81,23 @@ const About = () => {
         </div>
       </section>
 
-      {/* Slogan Section */}
-      <section className="relative px-6 flex flex-col md:flex-row mb-6">
+      <section className="relative flex my-4 mx-4">
         {/* Left Half */}
-        <div className="flex-1 flex flex-col justify-between">
-          <ul className="list-none text-white text-3xl mb-4">
-            <li className="mb-2">SKIP YOUR</li>
-            <li className="mb-2">COFFEE TODAY</li>
-            <li className="mb-2">AND BECOME</li>
-            <li className="mb-2 text-4xl">MILLIONAIRE</li>
-            <li className="mb-2">TOMORROW</li>
-          </ul>
+        <div className="w-1/2 flex items-center justify-center">
+          <div className="text-white text-center">
+            <ul className="list-none text-2xl md:text-4xl">
+              <li className="mb-2">SKIP YOUR</li>
+              <li className="mb-2">COFFEE TODAY</li>
+              <li className="mb-2">AND BECOME</li>
+              <li className="mb-2 text-3xl md:text-5xl">MILLIONAIRE</li>
+              <li className="mb-2">TOMORROW</li>
+            </ul>
+          </div>
         </div>
 
         {/* Right Half */}
-        <div className="flex-1 flex items-center justify-center">
-        <img src={app3dimage1} className="w-full h-auto"/>
+        <div className="w-1/2 flex items-center justify-end">
+          <img src={app3dimage} className="w-full h-auto object-cover" alt="3D App Image" />
         </div>
       </section>
       

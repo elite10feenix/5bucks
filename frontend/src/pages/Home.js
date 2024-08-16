@@ -6,27 +6,31 @@ import purplecircle from '../assets/purplecircle.png';
 import purpleline from '../assets/purpleline.png'; 
 import greencircle from '../assets/greencircle.png'; 
 import greenline from '../assets/greenline.png'; 
-import app3dimage2 from '../assets/app3dimage2.png'; // Adjust the path as needed
+import app3dimage from '../assets/app3dimage.png'; // Adjust the path as needed
 import avatar from '../assets/avatar.png'; // Adjust the path as needed
 
-const Home = () => {
+const Home = ({ openLoginModal, openRegisterModal}) => {
   return (
     <main className="w-full bg-custom-purple">
-      <section className="relative">
-        <img src={homeslider} className="w-full h-auto" />
 
-        <div className="absolute top-0 left-0 w-1/2 h-full flex flex-col justify-center items-start px-6">
-          <ul className="list-none text-white text-3xl mb-8">
-            <li className="mb-2">SKIP YOUR</li>
-            <li className="mb-2">COFFEE TODAY</li>
-            <li className="mb-2">AND BECOME</li>
-            <li className="mb-2 text-4xl">MILLIONAIRE</li>
-            <li className="mb-2">TOMORROW</li>
-          </ul>
-          <div className="flex space-x-4">
-            <Link to="/register" className="bg-register text-white px-6 py-2 rounded-full hover:bg-register-400 transition-colors duration-300 text-center">Register</Link>
-            <Link to="/login" className="bg-login text-black px-8 py-2 rounded-full hover:bg-login-400 transition-colors duration-300 text-center">Login</Link>
+      <section className="relative bg-cover bg-center mb-8 w-full h-screen" style={{ backgroundImage: `url(${homeslider})` }}>
+        <div className="flex w-full h-full">
+          {/* Left Half */}
+          <div className="w-1/2 flex flex-col justify-center items-start px-10">
+            <ul className="list-none text-white text-2xl md:text-4xl font-bold">
+              <li className="mb-2">SKIP YOUR</li>
+              <li className="mb-2">COFFEE TODAY</li>
+              <li className="mb-2">AND BECOME</li>
+              <li className="mb-2 text-3xl md:text-5xl">MILLIONAIRE</li>
+              <li className="mb-2">TOMORROW</li>
+            </ul>
+            <div className="flex space-x-4 mt-4">
+              <button onClick={openRegisterModal} className="bg-register text-white px-6 py-2 rounded-full hover:bg-register-400 transition-colors duration-300 text-center">Register</button>
+              <button onClick={openLoginModal} className="bg-login text-black px-8 py-2 rounded-full hover:bg-login-400 transition-colors duration-300 text-center">Login</button>
+            </div>
           </div>
+          {/* Right Half */}
+          <div className="w-1/2"></div> {/* Optional: Right side can be empty or have other content */}
         </div>
       </section>
 
@@ -133,35 +137,36 @@ const Home = () => {
         {/* Left Half */}
         <div className="flex-1 flex flex-col justify-between text-white p-4">
           <h1 className="text-4xl font-bold mb-8">Winners</h1>
-          <div className="flex flex-col items-start space-y-4">
+          <div className="flex flex-col items-start space-y-4 text-xl md:text-2xl">
             <div className="flex items-center bg-gradient-purple-pink text-white w-full rounded-md">
-              <img src={avatar} className="w-16 h-auto m-2 rounded-full"/>
-              <h2 className="p-2 text-2xl rounded-md ">Person X</h2>
+              <img src={avatar} className="w-8 md:w-16 h-auto m-2 rounded-full"/>
+              <h2 className="p-2 rounded-md ">Person X</h2>
             </div>
             <div className="flex items-center bg-gradient-purple-pink text-white w-full rounded-md">
-              <img src={avatar} className="w-16 h-auto m-2 rounded-full"/>
-              <h2 className="p-2 text-2xl rounded-md ">Person X</h2>
+              <img src={avatar} className="w-8 md:w-16 h-auto m-2 rounded-full"/>
+              <h2 className="p-2 rounded-md ">Person X</h2>
             </div>
             <div className="flex items-center bg-gradient-purple-pink text-white w-full rounded-md">
-              <img src={avatar} className="w-16 h-auto m-2 rounded-full"/>
-              <h2 className="p-2 text-2xl rounded-md ">Person X</h2>
+              <img src={avatar} className="w-8 md:w-16 h-auto m-2 rounded-full"/>
+              <h2 className="p-2 rounded-md ">Person X</h2>
             </div>
             <div className="flex items-center bg-gradient-purple-pink text-white w-full rounded-md">
-              <img src={avatar} className="w-16 h-auto m-2 rounded-full"/>
-              <h2 className="p-2 text-2xl rounded-md ">Person X</h2>
+              <img src={avatar} className="w-8 md:w-16 h-auto m-2 rounded-full"/>
+              <h2 className="p-2 rounded-md ">Person X</h2>
             </div>
             <div className="flex items-center bg-gradient-purple-pink text-white w-full rounded-md">
-              <img src={avatar} className="w-16 h-auto m-2 rounded-full"/>
-              <h2 className="p-2 text-2xl rounded-md ">Person X</h2>
+              <img src={avatar} className="w-8 md:w-16 h-auto m-2 rounded-full"/>
+              <h2 className="p-2 rounded-md ">Person X</h2>
             </div>
           </div>
         </div>
 
         {/* Right Half */}
         <div className="flex-1 flex items-center justify-center">
-          <img src={app3dimage2} className="w-full h-auto"/>
+          <img src={app3dimage} className="w-full h-auto"/>
         </div>
       </section>
+      
       <div className="w-full h-10 bg-custom-purple"></div>
 
     </main>
