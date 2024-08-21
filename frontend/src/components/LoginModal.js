@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import buttonimg from '../assets/auth/button.png'; 
+import loginbutton from '../assets/auth/loginbutton.png'; 
 import userimg from '../assets/auth/user.png'; 
 import lockimg from '../assets/auth/lock.png'; 
-import eyeimg from '../assets/auth/eye.png'; 
-import facebookimg from '../assets/auth/facebook.png'; 
-import appleimg from '../assets/auth/apple.png'; 
-import googleimg from '../assets/auth/google.png'; 
+import eyebutton from '../assets/auth/eyebutton.png'; 
+import facebookbutton from '../assets/auth/facebookbutton.png'; 
+import applebutton from '../assets/auth/applebutton.png'; 
+import googlebutton from '../assets/auth/googlebutton.png'; 
 
 const LoginModal = ({ closeModal, handleLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -71,32 +71,33 @@ const LoginModal = ({ closeModal, handleLogin }) => {
                 aria-label="Toggle Password Visibility"
                 >
                 <img
-                    src={eyeimg}
+                    src={eyebutton}
                     alt={showPassword ? "Hide Password" : "Show Password"}
                     className="h-5 w-5"
                 />
                 </button>
             </div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4 text-custom-black">
                 <div className="flex items-center">
                 <input type="checkbox" id="rememberMe" className="mr-2" />
-                <label htmlFor="rememberMe" className="text-gray-700">Remember me</label>
+                <label htmlFor="rememberMe">Remember me</label>
                 </div>
-                <a href="#" className="text-blue-500 hover:underline">Forgot Password?</a>
+                <a href="#" className="hover:underline">Forgot Password?</a>
             </div>
             
-            <button
+            <div className="flex justify-center mb-4">
+              <button
                 type="submit"
-                className="w-full py-2 px-4 mb-4 bg-cover bg-center text-white font-semibold rounded"
-                style={{ backgroundImage: `url(${buttonimg})` }}
-            >
-                Login
-            </button>
+                className="w-1/2 py-2 px-4 text-custom-black font-semibold rounded flex items-center justify-center"
+              >
+                <img src={loginbutton} className="w-full h-auto" alt="Submit Button" />
+              </button>
+            </div>
 
             <div className="flex items-center mb-4">
-                <hr className="flex-grow border-gray-300" />
-                <span className="mx-4 text-gray-600">or continue with</span>
-                <hr className="flex-grow border-gray-300" />
+                <hr className="flex-grow" />
+                <span className="mx-4 text-custom-black">or continue with</span>
+                <hr className="flex-grow" />
             </div>
             
             <div className="flex justify-around mb-4">
@@ -106,7 +107,7 @@ const LoginModal = ({ closeModal, handleLogin }) => {
                 aria-label="Sign in with Facebook"
                 >
                     <img
-                        src={facebookimg}
+                        src={facebookbutton}
                         alt="Facebook"
                         className="h-8 w-8"
                     />
@@ -117,7 +118,7 @@ const LoginModal = ({ closeModal, handleLogin }) => {
                 aria-label="Sign in with Apple"
                 >
                     <img
-                        src={appleimg}
+                        src={applebutton}
                         alt="Apple"
                         className="h-8 w-8"
                     />
@@ -128,14 +129,14 @@ const LoginModal = ({ closeModal, handleLogin }) => {
                 aria-label="Sign in with Google"
                 >
                     <img
-                        src={googleimg}
+                        src={googlebutton}
                         alt="Google"
                         className="h-8 w-8"
                     />
                 </button>
             </div>
-            <div className="text-center text-gray-600">
-                <button href="#" className="text-blue-500 hover:underline">Already have an account?</button>
+            <div className="text-center">
+                <button href="#" className="text-custom-black hover:underline">Already have an account?</button>
             </div>
         </form>
       </div>

@@ -37,14 +37,16 @@ const Home = ({ openLoginModal, openRegisterModal}) => {
       {/* winner code*/}
       <section className="flex flex-col items-center justify-center px-6">
 
-        <div className="bg-custom-purple2 p-3 text-white text-center rounded-md mx-12 mb-8">
-          <h1 className="text-4xl font-bold mb-8">What is the power of 5 dollars?</h1>
-          <p className="text-2xl mb-8">
-            Have you ever wondered how people around the world most often spend their 5 dollars?
-            Just ask yourself what percentage of people on this planet start their day with coffee?
-            And constantly repeat the same thing several times a day, often without real need for it... 
-          </p>
-        </div>
+        <Link to="/about">
+          <div className="bg-custom-purple2 p-3 text-white text-center rounded-md mx-12 mb-8">
+            <h1 className="text-4xl font-bold mb-8">What is the power of 5 dollars?</h1>
+            <p className="text-2xl mb-8">
+              Have you ever wondered how people around the world most often spend their 5 dollars?
+              Just ask yourself what percentage of people on this planet start their day with coffee?
+              And constantly repeat the same thing several times a day, often without real need for it... 
+            </p>
+          </div>
+        </Link>
 
         <div className="flex items-center justify-center mb-8 text-4xl text-bold text-white">
           <div className="relative flex items-center justify-center mx-2">

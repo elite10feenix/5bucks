@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
+import CookieConsentDialog from './CookieConsentDialog';
 
 const Layout = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -19,6 +20,7 @@ const Layout = ({ children }) => {
     localStorage.setItem('token', token);
     localStorage.setItem('username', username);
     closeLoginModal();
+    closeRegisterModal();
   };
 
   const handleLogout = async () => {
@@ -54,7 +56,8 @@ const Layout = ({ children }) => {
       {children}
       <Footer />
       {isLoginModalOpen && <LoginModal closeModal={closeLoginModal} handleLogin={handleLogin} />}
-      {isRegisterModalOpen && <RegisterModal closeModal={closeRegisterModal} />}
+      {isRegisterModalOpen && <RegisterModal closeModal={closeRegisterModal} handleLogin={handleLogin} />}
+      <CookieConsentDialog /> 
     </div>
   );
 };
