@@ -55,7 +55,7 @@ func RegisterHandler(c *gin.Context) {
 	var existingUser models.User
 	result := config.DB.Where("username = ?", registrationDetails.Username).First(&existingUser)
 	if result.Error == nil {
-		c.JSON(http.StatusConflict, gin.H{"error": "Username already taken"})
+		c.JSON(http.StatusConflict, gin.H{"error": "This username is already taken"})
 		return
 	}
 
@@ -117,11 +117,19 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
-	// Uncomment and implement your user authentication logic if needed
+	// Check if the username exists
 	var user models.User
 	result := config.DB.Where("username = ?", loginDetails.Username).First(&user)
-	if result.Error != nil || bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(loginDetails.Password)) != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
+	if result.Error != nil {
+		// If no user is found, return an error indicating the wrong username
+		c.JSON(http.StatusNotFound, gin.H{"error": "Wrong username"})
+		return
+	}
+
+	// Verify the password
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(loginDetails.Password)); err != nil {
+		// If the password doesn't match, return an error indicating the wrong password
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Wrong password"})
 		return
 	}
 
@@ -132,6 +140,7 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
+	// Return the generated token
 	c.JSON(http.StatusOK, gin.H{"token": token})
 }
 
@@ -148,11 +157,6 @@ func UserHandler(c *gin.Context) {
 		fmt.Println("No token provided")
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "No token provided"})
 		return
-	}
-
-	// Remove "Bearer " prefix if it exists
-	if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
-		tokenString = tokenString[7:]
 	}
 
 	// Parse the token

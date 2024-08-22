@@ -10,7 +10,7 @@ import googlebutton from '../assets/auth/googlebutton2.png';
 import applebutton from '../assets/auth/applebutton2.png';
 import resetbutton from '../assets/auth/reset.png';
 
-const RegisterModal = ({ closeModal, handleLogin }) => {
+const RegisterModal = ({ closeModal, handleLogin, handleSwitchToLogin }) => {
   const [formValues, setFormValues] = useState({
     username: '',
     fullname: '',
@@ -37,6 +37,8 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
   });
 
   const [error, setError] = useState(''); // To display error messages
+  const [usernameError, setUsernameError] = useState(''); // Username error
+ 
   const [phoneCodes, setPhoneCodes] = useState([]);
   const [captchaCode, setCaptchaCode] = useState('');
 
@@ -80,7 +82,7 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
 
     for (let field of requiredFields) {
       if (!formValues[field] || formValues[field].trim() === '') {
-        return `Please fill out the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}.`;
+        return `Fill in all required fields with correct information! (${field.replace(/([A-Z])/g, ' $1').toLowerCase()})`;
       }
     }
 
@@ -109,13 +111,23 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
       return;
     }
 
+    setUsernameError('');
+    setError('');
+
     try {
       const response = await axios.post('/api/register', formValues);
       const token = response.data.token;
       handleLogin(token, formValues.username); // Call handleLogin with the token and username
     } catch (error) {
-      setError('Registration failed. Please try again.'); // Set error message
-      console.error('Registration failed:', error);
+      if (error.response && error.response.data) {
+        const { error: errorMessage } = error.response.data;
+
+        if (errorMessage === 'This username is already taken') {
+          setUsernameError('This username is already taken');
+        } 
+      } else {
+        setError('Registration failed. Please try again.'); // Set error 
+      }
     }
   };
 
@@ -138,7 +150,7 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
 
         <div className="flex justify-center items-center mb-6">
           <img src={userplusimg} className="h-8 w-8 mr-2" />
-          <h1 className="text-2xl font-semibold">Registration</h1>
+          <h1 className="text-2xl font-semibold text-custom-black">Registration</h1>
         </div>
 
         {/* Google and Apple Login Buttons */}
@@ -162,14 +174,14 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
         <form onSubmit={handleSubmit}>
 
           {/* Username and Full Name */}
-          <div className="flex justify-start mb-4">
+          <div className={`flex justify-start ${usernameError ? ' ' : 'mb-4'}`}>
             <input 
               type="text" 
               name="username" 
               value={formValues.username} 
               onChange={handleInputChange} 
               placeholder="Username" 
-              className="w-1/2 p-2 border border-custom-black rounded mr-2" 
+              className={`w-1/2 p-2 rounded mr-2 border ${usernameError ? 'border-red-500' : 'border-custom-black'}`}
             />
             <input 
               type="text" 
@@ -179,6 +191,9 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
               placeholder="Full Name" 
               className="w-1/2 p-2 border border-custom-black rounded" 
             />
+          </div>
+          <div className="flex justify-start">
+            {usernameError && <p className="text-red-500 w-1/2 p-2 text-sm">{usernameError}</p>}
           </div>
 
           {/* Card Number, Expiry Date */}
@@ -362,7 +377,7 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
 
           {/* Captcha */}
           <div className="flex flex-col mb-4">
-            <div className="flex items-center mb-2">
+            <div className="flex items-center mb-2 text-custom-black">
               <span className="mr-2">Enter the code:</span>
               <span className="font-bold">{captchaCode}</span>
             </div>
@@ -380,7 +395,7 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
                 onClick={handleRefreshCaptcha} 
                 className="flex items-center p-2 border border-custom-black border-l-0 rounded-r hover:bg-gray-300 transition-colors"
               >
-                <span className="mr-2">Reset code</span>
+                <span className="mr-2 text-custom-black">Reset code</span>
                 <img src={resetbutton} alt="Refresh Captcha" className="h-5 w-5" />
               </button>
             </div>
@@ -396,7 +411,7 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
                 onChange={handleCheckboxChange} 
                 className="form-checkbox w-6 h-6 border-2 border-custom-black accent-custom-black" 
               />
-              <span className="flex-1">I agree to receive notifications about news, promotions, and offers.</span>
+              <span className="flex-1 text-custom-black">I agree to receive notifications about news, promotions, and offers.</span>
             </div>
             
             <div className="flex items-start space-x-2">
@@ -407,7 +422,7 @@ const RegisterModal = ({ closeModal, handleLogin }) => {
                 onChange={handleCheckboxChange} 
                 className="form-checkbox w-6 h-6 border-2 border-custom-black accent-custom-black" 
               />
-              <span className="flex-1">*I am over 18 years old, I have read and agree with the general terms of participation and the Privacy.</span>
+              <span className="flex-1 text-custom-black">*I am over 18 years old, I have read and agree with the general terms of participation and the Privacy.</span>
             </div>
           </div>
 

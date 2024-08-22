@@ -25,8 +25,8 @@ const Home = ({ openLoginModal, openRegisterModal}) => {
               <li className="mb-2">TOMORROW</li>
             </ul>
             <div className="flex space-x-4 mt-4">
-              <button onClick={openRegisterModal} className="bg-register text-white px-6 py-2 rounded-full hover:bg-register-400 transition-colors duration-300 text-center">Register</button>
-              <button onClick={openLoginModal} className="bg-login text-black px-8 py-2 rounded-full hover:bg-login-400 transition-colors duration-300 text-center">Login</button>
+              <button onClick={openRegisterModal} className="bg-register text-white text-bold px-10 py-3 rounded-full hover:bg-register-400 transition-colors duration-300 text-center">Register</button>
+              <button onClick={openLoginModal} className="bg-login text-custom-black text-bold px-12 py-3 rounded-full hover:bg-login-400 transition-colors duration-300 text-center">Login</button>
             </div>
           </div>
           {/* Right Half */}
@@ -48,7 +48,7 @@ const Home = ({ openLoginModal, openRegisterModal}) => {
           </div>
         </Link>
 
-        <div className="flex items-center justify-center mb-8 text-4xl text-bold text-white">
+        <div className="flex items-center justify-center mb-8 text-xl md:text-5xl text-bold text-white">
           <div className="relative flex items-center justify-center mx-2">
             <img src={purplecircle} className="w-36 h-auto"/>
             <span className="absolute">1</span>
@@ -96,7 +96,7 @@ const Home = ({ openLoginModal, openRegisterModal}) => {
 
         <h1 className="text-4xl text-custom-green font-bold mb-8">WINNER CODE</h1>
         
-        <div className="flex items-center justify-center mb-8 text-4xl text-bold text-white">
+        <div className="flex items-center justify-center mb-8 text-xl md:text-5xl text-bold text-white">
           {/* Circle images and text */}
           <div className="relative flex items-center justify-center mx-2">
             <img src={greencircle} className="w-36 h-auto"/>

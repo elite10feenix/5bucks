@@ -2,12 +2,12 @@ import React from 'react';
 import logo from '../assets/logo.png'; 
 import kafeImage from '../assets/kafe.png'; // Adjust the path as needed
 import coinImage from '../assets/coin.png'; // Adjust the path as needed
-import backgroundImage from '../assets/pozadina2.png'; // Adjust the path as needed
+import pozadina from '../assets/pozadina.png'; // Adjust the path as needed
 import app3dimage from '../assets/app3dimage.png'; // Adjust the path as needed
 
 const About = () => {
   return (
-    <main className="w-full bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <main className="w-full bg-cover bg-center" style={{ backgroundImage: `url(${pozadina})` }}>
       <section className="relative px-6 flex flex-col md:flex-row mb-6 pt-6">
         {/* Left Half */}
         <div className="flex-1 flex flex-col justify-between">

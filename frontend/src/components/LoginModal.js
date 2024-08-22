@@ -10,79 +10,98 @@ import facebookbutton from '../assets/auth/facebookbutton.png';
 import applebutton from '../assets/auth/applebutton.png'; 
 import googlebutton from '../assets/auth/googlebutton.png'; 
 
-const LoginModal = ({ closeModal, handleLogin }) => {
+const LoginModal = ({ closeModal, handleLogin, handleSwitchToRegister, handleForgotPassword }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // To display error messages
+  const [usernameError, setUsernameError] = useState(''); // Username error
+  const [passwordError, setPasswordError] = useState(''); // Password error
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setUsernameError('');
+    setPasswordError('');
+
     try {
       const response = await axios.post('/api/login', { username, password });
       const token = response.data.token;
       handleLogin(token, username); // Call handleLogin with the token and username
     } catch (error) {
-      setError('Login failed. Please check your credentials and try again.'); // Set error message
-      console.error('Login failed:', error);
+      if (error.response && error.response.data) {
+        const { error: errorMessage } = error.response.data;
+
+        // Check specific error messages
+        if (errorMessage === 'Wrong username') {
+          setUsernameError('Wrong username.');
+        } else if (errorMessage === 'Wrong password') {
+          setPasswordError('Wrong password.');
+        } else {
+          setUsernameError('Login failed. Please check your credentials and try again.');
+        }
+      } else {
+        setUsernameError('Login failed. Please try again.');
+      }
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-custom-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-8 rounded-lg max-w-sm w-full relative">
         <button 
           onClick={closeModal} 
           className="absolute top-3 right-3 p-1 bg-gray-200 rounded-full hover:bg-gray-300 transition-colors"
           aria-label="Close Modal"
         >
-          <XMarkIcon className="h-6 w-6 text-gray-600" />
+          <XMarkIcon className="h-6 w-6 text-custom-black" />
         </button>
-        <h1 className="text-2xl font-semibold mb-6 text-center">User Login</h1>
+        <h1 className="text-2xl font-semibold mb-6 text-center text-custom-black">User Login</h1>
         <form onSubmit={handleSubmit}>
-            {error && <p className="text-red-500 mb-4">{error}</p>} {/* Display error message */}
-            <div className="mb-4 flex border border-black rounded">
+            <div className={`mb-4 flex border rounded ${usernameError ? 'border-red-500' : 'border-custom-black'}`}>
                 <div className="flex items-center bg-custom-pink2 border border-black px-3 rounded">
-                <img src={userimg} alt="Username Icon" className="h-4 w-5" />
+                  <img src={userimg} alt="Username Icon" className="h-4 w-5" />
                 </div>
                 <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-                className="w-full py-2 px-3 focus:outline-none bg-custom-gray"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Username"
+                  className={`w-full py-2 px-3 focus:outline-none ${usernameError ? 'bg-red-50 border-red-500' : 'bg-custom-gray border-custom-black'}`}
                 />
             </div>
-            <div className="mb-4 flex border border-black rounded">
+            {usernameError && <p className="text-red-500 mb-2 text-sm">{usernameError}</p>}
+
+            <div className={`mb-4 flex border rounded ${passwordError ? 'border-red-500' : 'border-black'}`}>
                 <div className="flex items-center bg-custom-pink2 border border-black px-3 rounded">
-                <img src={lockimg} alt="Lock Icon" className="h-4 w-6" />
+                  <img src={lockimg} alt="Lock Icon" className="h-4 w-6" />
                 </div>
                 <input
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="w-full py-2 px-3 focus:outline-none bg-custom-gray"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className={`w-full py-2 px-3 focus:outline-none ${passwordError ? 'bg-red-50 border-red-500' : 'bg-custom-gray border-custom-black'}`}
                 />
                 <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="flex items-center px-3 focus:outline-none bg-custom-gray"
-                aria-label="Toggle Password Visibility"
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="flex items-center px-3 focus:outline-none bg-custom-gray"
+                  aria-label="Toggle Password Visibility"
                 >
-                <img
+                  <img
                     src={eyebutton}
                     alt={showPassword ? "Hide Password" : "Show Password"}
                     className="h-5 w-5"
-                />
+                  />
                 </button>
             </div>
+            {passwordError && <p className="text-red-500 mb-2 text-sm">{passwordError}</p>}
+
             <div className="flex items-center justify-between mb-4 text-custom-black">
                 <div className="flex items-center">
-                <input type="checkbox" id="rememberMe" className="mr-2" />
-                <label htmlFor="rememberMe">Remember me</label>
+                  <input type="checkbox" id="rememberMe" className="mr-2" />
+                  <label htmlFor="rememberMe">Remember me</label>
                 </div>
-                <a href="#" className="hover:underline">Forgot Password?</a>
+                <button onClick={handleForgotPassword}>Forgot Password?</button>
             </div>
             
             <div className="flex justify-center mb-4">
@@ -102,9 +121,9 @@ const LoginModal = ({ closeModal, handleLogin }) => {
             
             <div className="flex justify-around mb-4">
                 <button 
-                type="button" 
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                aria-label="Sign in with Facebook"
+                  type="button" 
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Sign in with Facebook"
                 >
                     <img
                         src={facebookbutton}
@@ -113,9 +132,9 @@ const LoginModal = ({ closeModal, handleLogin }) => {
                     />
                 </button>
                 <button 
-                type="button" 
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                aria-label="Sign in with Apple"
+                  type="button" 
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Sign in with Apple"
                 >
                     <img
                         src={applebutton}
@@ -124,9 +143,9 @@ const LoginModal = ({ closeModal, handleLogin }) => {
                     />
                 </button>
                 <button 
-                type="button" 
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                aria-label="Sign in with Google"
+                  type="button" 
+                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  aria-label="Sign in with Google"
                 >
                     <img
                         src={googlebutton}
@@ -136,7 +155,7 @@ const LoginModal = ({ closeModal, handleLogin }) => {
                 </button>
             </div>
             <div className="text-center">
-                <button href="#" className="text-custom-black hover:underline">Already have an account?</button>
+                <button onClick={handleSwitchToRegister} className="text-custom-black hover:underline">Already have an account?</button>
             </div>
         </form>
       </div>
