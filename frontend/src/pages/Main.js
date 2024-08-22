@@ -1,5 +1,7 @@
 // Main.js
 import React, { useState, useEffect } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'; // Import default styles for the calendar
 import { Link } from 'react-router-dom';
 import coffeeimg from '../assets/main/coffee.png'; 
 import minusbutton from '../assets/main/minus.png'; 
@@ -10,7 +12,14 @@ import purpleline from '../assets/purpleline.png';
 import invited from '../assets/main/invited.png';
 import activeplaced from '../assets/main/activeplaced.png';
 import pozadina from '../assets/pozadina.png'; 
-import app3dimage from '../assets/app3dimage.png'; // Adjust the path as needed
+import logo from '../assets/logo3.png';
+import app3dimg from '../assets/app3dimage.png';
+import walletimg from '../assets/main/wallet.png';
+import incomingimg from '../assets/main/incoming.png';
+import withdrawlimg from '../assets/main/withdrawl.png';
+import coffeesmile from '../assets/main/coffeesmile.png';
+
+
 
 const Main = () => {
     const [quantity, setQuantity] = useState(1);
@@ -42,12 +51,45 @@ const Main = () => {
         { id: 3, date: 'May 5,2024, 18:00', paymentType: 'Credit Card' },
         { id: 3, date: 'May 5,2024, 18:00', paymentType: 'Credit Card' },
         { id: 3, date: 'May 5,2024, 18:00', paymentType: 'Credit Card' },
+    ];
 
-        // Add more data as needed
-      ];
+    const recenttrasanctiondata = [
+        { paymentType: 'Credit Card', banknumber: '4732 .... .... .... 1923', time: '17 MAY 2024', budget: '350$' },
+        { paymentType: 'Credit Card', banknumber: '4732 .... .... .... 1923', time: '17 MAY 2024', budget: '350$' },
+        { paymentType: 'Credit Card', banknumber: '4732 .... .... .... 1923', time: '17 MAY 2024', budget: '350$' },
+        { paymentType: 'Credit Card', banknumber: '4732 .... .... .... 1923', time: '17 MAY 2024', budget: '350$' },
+        { paymentType: 'Credit Card', banknumber: '4732 .... .... .... 1923', time: '17 MAY 2024', budget: '350$' },
+    ];
+
+    const [dateTime, setDateTime] = useState(new Date());
+
+    useEffect(() => {
+        // Update the date and time every second
+        const timer = setInterval(() => {
+        setDateTime(new Date());
+        }, 1000);
+
+        // Cleanup the timer when the component unmounts
+        return () => clearInterval(timer);
+    }, []);
+    const formattedDate = dateTime.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+    });
+    const formattedTime = dateTime.toLocaleTimeString('en-US');
+
+    const billData = [
+        { price: '100', quantity: 0.25 },
+        { price: '150', quantity: 0.50 },
+        { price: '250', quantity: 0.75 },
+        { price: '400', quantity: 1 },
+    ];
+    const totalPrice = billData.reduce((total, item) => total + (parseFloat(item.price) * item.quantity), 0);
+    
 
     return (
-        <main className="w-full bg-custom-purple">
+        <main className="w-full bg-custom-purple pb-4">
             <section className="flex flex-col items-center justify-center mx-6">
                 <h1 className="text-4xl font-bold text-white">BUY YOUR COFFEE</h1>
                 <img src={coffeeimg} alt="Coffee" className="w-2/3 h-auto mb-4" />
@@ -263,11 +305,214 @@ const Main = () => {
                 </div>
 
                 <div className="md:w-1/4 flex items-center justify-center">
-                    <img src={app3dimage} alt="Affiliate Program" className="w-80 h-auto" />
+                    <img src={app3dimg} alt="Affiliate Program" className="w-80 h-auto" />
                 </div>
             </section>
 
+            <section className="flex flex-col bg-gradient-purple-pink2 rounded-md mx-6 mb-4 pb-4">
+             
+                <div className="flex w-full items-center justify-between p-4 mb-4">
+                    <div className="flex items-center">
+                        <img src={logo} className="w-16 h-16 mr-4" />
+                        <div className="text-white text-2xl">
+                            <p className="underline mb-1">user@example.com</p>
+                            <p>Affiliate ID: 123456</p>
+                        </div>
+                    </div>
+                    <div className="text-right text-white text-2xl">
+                        <p className="mb-1">{formattedDate}</p>
+                        <p>{formattedTime}</p>
+                    </div>
+                </div>
 
+                <h1 className="text-white text-3xl pb-1 border-b-2 border-custom-pink mx-6 mb-4">OVERVIEW</h1>
+
+                <div className="flex flex-col lg:flex-row justify-between mx-6 mb-4">
+                    <div className="flex items-center w-full lg:w-1/2 text-lg lg:text-xl">
+                        <div className="flex w-full items-center bg-custom-gray2 rounded-md">
+                            <label className="p-2 rounded-l bg-custom-gray2 text-custom-gray3 flex-shrink-0">
+                                INVITATION LINK:
+                            </label>
+                            <label className="py-2 pr-2 bg-custom-gray2 text-custom-black w-full">
+                                www.5bucks.io/invite2413
+                            </label>
+                            <button
+                                type="button"
+                                className="flex items-center p-2 rounded-r bg-custom-green3 hover:bg-custom-green transition-colors"
+                            >
+                                <span className="text-custom-purple font-bold">COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Second Child */}
+                    <div className="flex items-center w-full lg:w-1/2 text-lg lg:text-xl mt-4 lg:mt-0 lg:ml-4">
+                        <div className="flex w-full items-center bg-custom-gray2 rounded-md">
+                            <label className="p-2 rounded-l bg-custom-gray2 text-custom-gray3 flex-shrink-0">
+                                Email:
+                            </label>
+                            <label className="py-2 pr-2 bg-custom-gray2 text-custom-black w-full">
+                                5bucks@gmail.com
+                            </label>
+                            <button
+                                type="button"
+                                className="flex items-center p-2 rounded-r bg-custom-green3 hover:bg-custom-green transition-colors"
+                            >
+                                <span className="text-custom-purple font-bold">COPY</span>
+                            </button>
+                            </div>
+                        </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-16 mx-6 mb-4">
+                    <div className="flex flex-col bg-custom-purple border border-custom-pink w-full md:w-1/3 pl-4 py-4 rounded-md">
+                        <div className="flex items-center">
+                            <div className="w-1/3">
+                                <img src={walletimg} className="w-30 h-24" />
+                            </div>
+                            <div className="w-2/3 ">
+                                <p className="text-xl text-custom-white mb-2">WALLET
+                                </p>
+                                <p className="text-4xl text-white pl-1">$17.500</p>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <div className="flex flex-col bg-custom-purple border border-custom-pink w-full md:w-1/3 pl-4 py-4 rounded-md">
+                        <div className="flex items-center">
+                            <div className="w-1/3">
+                                <img src={incomingimg} className="w-30 h-24" />
+                            </div>
+                            <div className="w-2/3 ">
+                                <p className="text-xl text-custom-white mb-2">INCOMING
+                                </p>
+                                <p className="text-4xl text-white pl-1">$3720</p>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <div className="flex flex-col bg-custom-purple border border-custom-pink w-full md:w-1/3 pl-4 py-4 rounded-md">
+                        <div className="flex items-center">
+                            <div className="w-1/3">
+                                <img src={withdrawlimg} className="w-30 h-24" />
+                            </div>
+                            <div className="w-2/3 ">
+                                <p className="text-xl text-custom-white mb-2">WITHDRAWL
+                                </p>
+                                <p className="text-4xl text-white pl-1">$75.500</p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-16 mx-6 mb-4">
+                    <div className="text-center bg-gradient-pink2 border border-custom-pink w-full md:w-1/3 p-4 rounded-xl">
+                        <label className="text-3xl font-bold mb-4 text-white">
+                            Summary
+                        </label>
+                    </div>
+                    <div className="text-center bg-custom-green3 shadow-inner-top-left border border-custom-pink w-full md:w-1/3 p-4 rounded-xl">
+                        <label className="text-3xl font-bold mb-4 text-white">
+                            INCOMING
+                        </label>
+                    </div>
+                    <div className="text-center bg-gradient-pink2  border border-custom-pink w-full md:w-1/3 p-4 rounded-xl">
+                        <label className="text-3xl font-bold mb-4 text-white">
+                            TRANSFER
+                        </label>
+                    </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-stretch space-y-4 md:space-y-0 md:space-x-16 mx-6 mb-4">
+                    <div className="bg-custom-black flex-1 p-6 rounded-md flex justify-center items-center">
+                        <div className="w-full max-w-xs">
+                        <Calendar
+                            className="react-calendar" // Add custom class for calendar styling
+                        />
+                        </div>
+                    </div>
+
+                    <div className="bg-custom-black flex-1 p-6 rounded-md">
+                        <div className="w-full max-w-lg mx-auto text-white">
+                        <div className="text-lg mb-4">
+                            <span>August 22, 2024</span> 
+                        </div>
+
+                        <div className="space-y-2">
+                            {billData.map((item, index) => {
+                            const itemTotal = parseFloat(item.price) * item.quantity;
+                            return (
+                                <div key={index} className="flex justify-between items-center pb-2">
+                                {/* Description */}
+                                <div className="flex-1 flex items-center space-x-4">
+                                    <span className="font-medium">{item.price}</span>
+                                    <span className="font-medium">COFFEE</span>
+                                    <span className="text-gray-400">X</span>
+                                    <span>{item.quantity.toFixed(2)}</span>
+                                </div>
+
+                                <div className="flex items-center space-x-4 text-right">
+                                    <span>${itemTotal.toFixed(2)}</span>
+                                </div>
+                                </div>
+                            );
+                            })}
+                        </div>
+
+                        <div className="mt-4 border-t border-custom-pink pt-2">
+                            <div className="flex justify-between text-lg">
+                            <span>Summary:</span>
+                            <span>${totalPrice.toFixed(2)}</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-custom-black flex-1 p-6 rounded-md">
+                        <h1 className="mb-4 text-left text-white text-lg">RECENT TRANSACTION</h1>
+                        <table className="min-w-full text-white text-lg">
+                        <tbody className="text-white">
+                            {recenttrasanctiondata.map((row, index) => (
+                            <tr key={index}>
+                                <td className="p-2 flex items-center space-x-2">
+                                <div className="flex-shrink-0">
+                                    <img src={billbutton} alt="PayPal" className="w-8 h-auto" />
+                                </div>
+                                <div className="flex flex-col ml-2 text-left">
+                                    <label>{row.banknumber}</label>
+                                    <label>{row.time}</label>
+                                </div>
+                                </td>
+                                <td className="p-2">{row.budget}</td>
+                            </tr>
+                            ))}
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center justify-center mx-6">
+                    <div className="flex flex-col items-start space-y-2 text-white text-semibold text-3xl">
+                        <p>1 - 100 coffee you earn</p>
+                        <p className="pb-4">0.25 cents per coffee</p>
+                        <p>101 - 250 coffee you earn</p>
+                        <p>0.50 cents per coffee</p> 
+                    </div>
+
+                    <div className="flex items-center justify-center">
+                        <img src={coffeesmile} alt="Center Image" className="w-100 h-auto object-cover" />
+                    </div>
+
+                    <div className="flex flex-col items-start space-y-2 text-white text-semibold text-3xl">
+                        <p>251 - 500 coffee you earn</p>
+                        <p className="pb-4">0.75 cents per coffee</p>
+                        <p>over 500 coffee you earn</p>
+                        <p>1 dollar per coffee</p> 
+                    </div>
+                </div>
+
+
+            </section>
         </main>
     );
 };

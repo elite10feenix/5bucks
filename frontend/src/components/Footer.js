@@ -26,18 +26,18 @@ const Footer = () => {
               <div className="flex flex-col items-start">
                 <h4 className="font-bold mb-2 text-2xl ">Policies</h4>
                 <ul className="space-y-1 text-xl">
-                  <li><Link to="/term-of-use" className="hover:underline">Term of Use</Link></li>
-                  <li><Link to="/cookie-policy" className="hover:underline">Cookie Policy</Link></li>
-                  <li><Link to="/privacy-notice" className="hover:underline">Privacy Notice</Link></li>
+                  <li><Link to="/term-of-use" className="underline">Term of Use</Link></li>
+                  <li><Link to="/cookie-policy" className="underline">Cookie Policy</Link></li>
+                  <li><Link to="/privacy-notice" className="underline">Privacy Notice</Link></li>
                 </ul>
               </div>
               {/* About Us Section */}
               <div className="flex flex-col items-start">
                 <h4 className="font-bold mb-2 text-2xl">About Us</h4>
                 <ul className="space-y-1 text-xl">
-                  <li><Link to="/about" className="hover:underline">About Us</Link></li>
-                  <li><Link to="/affiliates" className="hover:underline">5bucks Affiliates</Link></li>
-                  <li><Link to="/contact" className="hover:underline">Contact Us</Link></li>
+                  <li><Link to="/about" className="underline">About Us</Link></li>
+                  <li><Link to="/affiliates" className="underline">5bucks Affiliates</Link></li>
+                  <li><Link to="/contact" className="underline">Contact Us</Link></li>
                 </ul>
               </div>
             </div>
