@@ -9,4 +9,5 @@ func SetupRoutes(r *gin.Engine) {
 	ApiRoutes(r)
 	AdminRoutes(r)
 	UserRoutes(r)
+	CardRoutes(r)
 }

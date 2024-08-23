@@ -14,6 +14,7 @@ func ApiRoutes(r *gin.Engine) {
 		api.POST("/login", controllers.LoginHandler)
 		api.POST("/logout", controllers.LogoutHandler)
 		api.POST("/register", controllers.RegisterHandler)
+		api.POST("/changepassword", controllers.ChangePasswordHandler)
 		api.GET("/user", controllers.UserHandler)
 	}
 }

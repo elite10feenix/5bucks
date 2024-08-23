@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import logo from '../assets/logo.png';
 import profile from '../assets/profile.png';
 
-const Header = ({ openLoginModal, openRegisterModal, token, username, handleLogout }) => {
+const Header = ({ openLoginModal, openRegisterModal, token, username }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
@@ -24,10 +24,10 @@ const Header = ({ openLoginModal, openRegisterModal, token, username, handleLogo
             </div>
 
             {token ? (
-              <div onClick={handleLogout} className="flex items-center space-x-2 cursor-pointer">
+              <Link to="/user" className="flex items-center space-x-2 cursor-pointer">
                 <h2 className="bg-register text-xl text-white px-6 py-2 rounded-full hover:bg-register-400 transition-colors duration-300 text-center">{username}</h2>
                 <img src={profile} className="py-2 h-16" />
-              </div>
+              </Link>
             ) : (
               <div className="flex space-x-2 text-xl">
                 <button onClick={openRegisterModal} className="bg-register text-white px-6 py-2 rounded-full hover:bg-register-400 transition-colors duration-300 text-center">Register</button>
@@ -50,10 +50,10 @@ const Header = ({ openLoginModal, openRegisterModal, token, username, handleLogo
           </Link>
 
           {token ? (
-            <div onClick={handleLogout} className="flex items-center space-x-2 cursor-pointer mt-4">
+            <Link to="/user" className="flex items-center space-x-2 cursor-pointer mt-4">
               <h2 className="bg-register text-white px-6 py-2 rounded-full text-center">{username}</h2>
               <img src={profile} className="h-8 cursor-pointer" alt="Profile" />
-            </div>
+            </Link>
           ) : (
             <div className="flex space-x-4 text-xl">
               <button onClick={openRegisterModal} className="bg-register text-white py-2 px-6 rounded-full hover:bg-register-400 transition-colors duration-300 text-center">Register</button>

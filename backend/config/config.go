@@ -49,4 +49,9 @@ func ConnectDatabase() {
 	if err != nil {
 		log.Fatalf("Error automigrating: %v", err)
 	}
+
+	err = DB.AutoMigrate(&models.Card{})
+	if err != nil {
+		log.Fatalf("Error automigrating: %v", err)
+	}
 }

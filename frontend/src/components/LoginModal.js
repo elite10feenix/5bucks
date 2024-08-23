@@ -25,7 +25,8 @@ const LoginModal = ({ closeModal, handleLogin, handleSwitchToRegister, handleFor
     try {
       const response = await axios.post('/api/login', { username, password });
       const token = response.data.token;
-      handleLogin(token, username); // Call handleLogin with the token and username
+      const fullname = response.data.fullname
+      handleLogin(token, username, fullname); // Call handleLogin with the token and username
     } catch (error) {
       if (error.response && error.response.data) {
         const { error: errorMessage } = error.response.data;
